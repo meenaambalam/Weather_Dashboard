@@ -1,0 +1,31 @@
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.header{
+    text-align: center;
+    width: 100%;
+}
+
+span{
+    background-color: black;
+    color: white;
+    width: 400px;
+}
+
+.citySrchBtn{
+    background-color: blue;
+}
+
+.greybox{
+    background-color: lightgrey;
+    height: 100%;
+
+}
+
+.card{
+    width: 100%;
+    margin-bottom: 30px;
+}

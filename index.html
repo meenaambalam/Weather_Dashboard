@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./Assets/style/style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 header">
+                <h1><span>Weather Dashboard</span></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 search dynamicSrchBtns">
+                <div class="greybox">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h6>Search for a City:</h6>
+                        </div>
+                        <div class="col-lg-3">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <input type="text" class="citySrch float-left" value="">
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="citySrchBtn">
+                                <i class="fas fa-search" style="color: white;"></i>
+                            </button>
+                        </div>
+                        <div class="col-lg-1">
+                            <p></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-12 srchdCityLst">
+                            <!--Dynamically build the city buttons-->
+                            <button>Atlanta</button><br>
+                            <button>Minneapolis</button><br>
+                            <button>Eagan</button><br>
+                            <button>EdenPrairie</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 dispWeather">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card" style="width: 40rem;">
+                            <h5>City Name date </h6>
+                            <img of cloud>
+                            <h6> Temperature</h6>
+                            <h6> Humidity</h6>
+                            <h6> Windspeed </h6>
+                            <h6>UV Index</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h5>5-Day Forecast:</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1">
+                        <p></p>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="card" style="width: 18rem;">
+                            <h5>City Name date </h6>
+                            <img of cloud>
+                        </div>
+                        <div class="card-body">
+                            <h6> Temperature</h6>
+                            <h6> Humidity</h6>
+                            <h6> Windspeed </h6>
+                            <h6>UV Index</h6>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="card" style="width: 18rem;">
+                            <h5>City Name date </h6>
+                            <img of cloud>
+                        </div>
+                        <div class="card-body">
+                            <h6> Temperature</h6>
+                            <h6> Humidity</h6>
+                            <h6> Windspeed </h6>
+                            <h6>UV Index</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="card" style="width: 18rem;">
+                            <h5>City Name date </h6>
+                            <img of cloud>
+                        </div>
+                        <div class="card-body">
+                            <h6> Temperature</h6>
+                            <h6> Humidity</h6>
+                            <h6> Windspeed </h6>
+                            <h6>UV Index</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="card" style="width: 18rem;">
+                            <h5>City Name date </h6>
+                            <img of cloud>
+                        </div>
+                        <div class="card-body">
+                            <h6> Temperature</h6>
+                            <h6> Humidity</h6>
+                            <h6> Windspeed </h6>
+                            <h6>UV Index</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="card" style="width: 18rem;">
+                            <h5>City Name date </h6>
+                            <img of cloud>
+                        </div>
+                        <div class="card-body">
+                            <h6> Temperature</h6>
+                            <h6> Humidity</h6>
+                            <h6> Windspeed </h6>
+                            <h6>UV Index</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-1">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Dynamically build the weather dashboard-->
+    </div>
+
+    <!-- Links to various Libraries -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./Assets/js/weather.js"></script>
+</body>
+
+</html>
