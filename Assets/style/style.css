@@ -38,7 +38,7 @@ span{
     width: 100%;
     margin-bottom: 30px;
     height: 100%;
-    background-color: blue
+    background-color: blue;
 }
 
 .cityBtns {
@@ -63,8 +63,8 @@ span{
 }
 .todayForecast{
     width: 100%;
-    /* width: 45rem; */
 }
+
 
 .footer{
     background-color: navy;

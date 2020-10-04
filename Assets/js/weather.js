@@ -8,6 +8,7 @@ $(document).ready(function(){
     var hours = date.getHours();
     var minutes = "0" + date.getMinutes();
     var seconds = "0" + date.getSeconds();
+    var cityArray = [""];
 
     console.log("date: " + date + " hours: " + hours + " minutes: " + minutes + " seconds: " + seconds);
     //console.log(momentDateString);
@@ -65,7 +66,7 @@ $(document).ready(function(){
                 forecastDate = forecastDateTime[0];
                 forecastTime = forecastDateTime[1];
                 if (forecastTime == "00:00:00") {
-                    console.log("i: " + i + " daycounter: " + dayCounter);
+                    //console.log("i: " + i + " daycounter: " + dayCounter);
 
                     weatherIcon = "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png";
                     $("#date" + dayCounter).text(forecastDate);
@@ -83,8 +84,29 @@ $(document).ready(function(){
 
     }
     
+    function addCityButton(cityName){
+        var ctyButton;
+
+        ctyButton = $("<button>");
+        ctyButton.addClass("cityBtns");
+        ctyButton.text(cityName);
+        $(".srchdCityLst").prepend(ctyButton);            
+        
+    }
+
     // Function definition to add new City Button when user selects a city to lookup the weather
-    function addCityBtn(){
+    function checkCityArray(cityName){
+
+        var indexCityArray = cityArray.indexOf(cityName);
+        console.log(" 1: " + "cityArray: " + cityArray + " index: " + indexCityArray);
+        //If the city searched is already in the button array list, remove it
+        if (indexCityArray >=0 ) {
+            cityArray.splice(indexCityArray,1);
+            console.log(" 2: " + "cityArray: " + cityArray + " index: " + indexCityArray);
+        }0
+        cityArray.push(cityName); //push search city to Array as the last item
+        console.log(" 3: " + "cityArray: " + cityArray + " index: " + indexCityArray);
+        addCityButton(cityName);
 
     }
 
@@ -92,11 +114,12 @@ $(document).ready(function(){
     //The behavior when onclick is to call weather API and create dynamic city buttons and display the 5 days of forecast.
     $(".citySrchBtn").on("click", function(){
         var cityName = $(".citySrch").val();
+
         if (cityName == ""){
             alert("Please enter a city name");
         }
         else {
-            addCityBtn();
+            checkCityArray(cityName);
             ajax_citySrch(cityName);
         }
     })
