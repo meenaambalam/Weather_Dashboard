@@ -50,7 +50,8 @@ $(document).ready(function(){
             var forecastTime = forecastDateTime[1];
             var weatherIcon = "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png";
             console.log("forecast date: " + forecastDate);
-            $("#date" + i).text(response.city.name + "(" + forecastDate + ")");
+            $("#city" + i).text(response.city.name);
+            $("#date" + i).text("(" + forecastDate + ")");
             $("#icon" + i).attr("src", weatherIcon);
             $("#icon" + i).attr("alt", response.list[i].weather[0].description);
             $("#temp" + i).text("Temperature: " + response.list[i].main.temp);
@@ -79,7 +80,10 @@ $(document).ready(function(){
                 if (dayCounter > 6) {
                     break;
                 }
-            }           
+            }    
+            
+            checkCityArray(cityName);
+
         })
 
     }
@@ -103,7 +107,7 @@ $(document).ready(function(){
         if (indexCityArray >=0 ) {
             cityArray.splice(indexCityArray,1);
             console.log(" 2: " + "cityArray: " + cityArray + " index: " + indexCityArray);
-        }0
+        }
         cityArray.push(cityName); //push search city to Array as the last item
         console.log(" 3: " + "cityArray: " + cityArray + " index: " + indexCityArray);
         addCityButton(cityName);
@@ -119,7 +123,6 @@ $(document).ready(function(){
             alert("Please enter a city name");
         }
         else {
-            checkCityArray(cityName);
             ajax_citySrch(cityName);
         }
     })
