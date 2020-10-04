@@ -17,136 +17,148 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 header">
-                <h1><span>Weather Dashboard</span></h1>
+                <h1><span class="header">Weather Dashboard</span></h1>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4 search dynamicSrchBtns">
                 <div class="greybox">
                     <div class="row">
-                        <div class="col-lg-9">
+                        <div class="col-lg-9 forecast">
                             <h6>Search for a City:</h6>
                         </div>
                         <div class="col-lg-3">
                             <p></p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <input type="text" class="citySrch float-left" value="">
-                        </div>
-                        <div class="col-lg-3">
+                    <div class="row citySrchCol">
+                        <div class="col-lg-12">
+                            <input type="text" class="citySrch" value="">
                             <button class="citySrchBtn">
                                 <i class="fas fa-search" style="color: white;"></i>
                             </button>
                         </div>
-                        <div class="col-lg-1">
-                            <p></p>
-                        </div>
+                        <!-- <div class="col-lg-2">
+                            <button class="citySrchBtn">
+                                <i class="fas fa-search" style="color: white;"></i>
+                            </button>
+                        </div> -->
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-lg-12 srchdCityLst">
                             <!--Dynamically build the city buttons-->
-                            <button>Atlanta</button><br>
-                            <button>Minneapolis</button><br>
-                            <button>Eagan</button><br>
-                            <button>EdenPrairie</button>
+                            <button class="cityBtns">Atlanta</button>
+                            <button class="cityBtns">Minneapolis</button>
+                            <button class="cityBtns">Eagan</button>
+                            <button class="cityBtns">EdenPrairie</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-8 dispWeather">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card" style="width: 40rem;">
-                            <h5>City Name date </h6>
-                            <img of cloud>
-                            <h6> Temperature</h6>
-                            <h6> Humidity</h6>
-                            <h6> Windspeed </h6>
-                            <h6>UV Index</h6>
+                <div class="row ">
+                    <div class="col-lg-12 ">
+                        <div class="card day-0 todayForecast">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h3 class="day-0" id="date0">City Name (date)</h3>
+                                </div>
+                                <div class="col-lg-4">
+                                    <img class="day-0" id="icon0" src="" alt="">
+                                </div>
+                                <div class="col-lg-2">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h6 class="day-0" id="temp0">Temperature:</h6>
+                                    <p></p>
+                                    <h6 class="day-0" id="humid0"> Humidity:</h6>
+                                    <p></p>
+                                    <h6 class="day-0" id="wind0"> Windspeed: </h6>
+                                    <p></p>
+                                    <h6 class="day-0" id="uvindex0">UV Index:</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row forecast-text">
                     <div class="col-lg-12">
                         <h5>5-Day Forecast:</h5>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-1">
-                        <p></p>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="card" style="width: 18rem;">
-                            <h5>City Name date </h6>
-                            <img of cloud>
-                        </div>
-                        <div class="card-body">
-                            <h6> Temperature</h6>
-                            <h6> Humidity</h6>
-                            <h6> Windspeed </h6>
-                            <h6>UV Index</h6>
+                    <div class="col-lg-2 days">
+                        <div class="card day-1" style="width: 8rem;">
+                            <h5 class="day-1" id="date1">Date </h5>
+                            <p></p>
+                            <span><img class="day-1" id="icon1" src="" alt=""></span>
+                            <p></p>
+                            <h6 class="day-1" id="temp1"> Temp:</h6>
+                            <p></p>
+                            <h6 class="day-1" id="humid1"> Humidity:</h6>
                         </div>
 
                     </div>
-                    <div class="col-lg-2">
-                        <div class="card" style="width: 18rem;">
-                            <h5>City Name date </h6>
-                            <img of cloud>
+                    <div class="col-lg-2 days">
+                        <div class="card day-2" style="width: 8rem;">
+                            <h5 class="day-2" id="date2">Date </h5>
+                            <p></p>
+                            <span><img class="day-2" id="icon2" src="" alt=""></span>
+                            <p></p>
+                            <h6 class="day-2" id="temp2"> Temp:</h6>
+                            <p></p>
+                            <h6 class="day-2" id="humid3"> Humidity:</h6>
                         </div>
-                        <div class="card-body">
-                            <h6> Temperature</h6>
-                            <h6> Humidity</h6>
-                            <h6> Windspeed </h6>
-                            <h6>UV Index</h6>
+                    </div>
+                    <div class="col-lg-2 days">
+                        <div class="card day-3" style="width: 8rem;">
+                            <h5 class="day-3" id="date3">Date </h5>
+                            <p></p>
+                            <span><img class="day-3" id="icon3" src="" alt=""></span>
+                            <p></p>
+                            <h6 class="day-3" id="temp3"> Temp:</h6>
+                            <p></p>
+                            <h6 class="day-3" id="humid3"> Humidity:</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 days">
+                        <div class="card day-4" style="width: 8rem;">
+                            <h5 class="day-4" id="date4">Date </h5>
+                            <p></p>
+                            <span><img class="day-4" id="icon4" src="" alt=""></span>
+                            <p></p>
+                            <h6 class="day-4" id="temp4"> Temp:</h6>
+                            <p></p>
+                            <h6 class="day-4" id="humid4"> Humidity:</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 days">
+                        <div class="card day-5" style="width: 8rem;">
+                            <h5 class="day-5" id="date5">Date </h5>
+                            <p></p>
+                            <span><img class="day-5" id="icon5" src="" alt=""></span>
+                            <p></p>
+                            <h6 class="day5" id="temp5"> Temp:</h6>
+                            <p></p>
+                            <h6 class="day5" id="humid5"> Humidity:</h6>
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <div class="card" style="width: 18rem;">
-                            <h5>City Name date </h6>
-                            <img of cloud>
-                        </div>
-                        <div class="card-body">
-                            <h6> Temperature</h6>
-                            <h6> Humidity</h6>
-                            <h6> Windspeed </h6>
-                            <h6>UV Index</h6>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="card" style="width: 18rem;">
-                            <h5>City Name date </h6>
-                            <img of cloud>
-                        </div>
-                        <div class="card-body">
-                            <h6> Temperature</h6>
-                            <h6> Humidity</h6>
-                            <h6> Windspeed </h6>
-                            <h6>UV Index</h6>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="card" style="width: 18rem;">
-                            <h5>City Name date </h6>
-                            <img of cloud>
-                        </div>
-                        <div class="card-body">
-                            <h6> Temperature</h6>
-                            <h6> Humidity</h6>
-                            <h6> Windspeed </h6>
-                            <h6>UV Index</h6>
-                        </div>
-                    </div>
-                    <div class="col-lg-1">
                         <p></p>
                     </div>
                 </div>
             </div>
         </div>
-
+        <div class="row footer">
+            <div class="col-lg-12">
+                <p>Wherever you go, no matter what the weather, always bring your own sunshine!!!</p>
+            </div>
+        </div>
         <!--Dynamically build the weather dashboard-->
     </div>
 

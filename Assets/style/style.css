@@ -2,19 +2,26 @@
     width: 100%;
     height: 100%;
     position: relative;
+    background: lightgrey;
 }
 
 .header{
     text-align: center;
     width: 100%;
+    padding-bottom: 20px;
+    color: white;
+    background-color: navy;
 }
 
 span{
-    background-color: black;
-    color: white;
+    /* background-color: black; */
+    color: black;
     width: 400px;
 }
 
+.citySrch {
+    float:left;
+}
 .citySrchBtn{
     background-color: blue;
 }
@@ -22,10 +29,46 @@ span{
 .greybox{
     background-color: lightgrey;
     height: 100%;
+    padding-left: 10px;
+    margin-top: 0px;
 
 }
 
 .card{
     width: 100%;
     margin-bottom: 30px;
+    height: 100%;
+    background-color: blue
+}
+
+.cityBtns {
+    width: 95%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.days {
+    margin-right:20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+
+.day-0 {
+    background-color: whitesmoke;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 5px;
+}
+.forecast-text{
+    margin-top: 30px;
+}
+.todayForecast{
+    width: 100%;
+    /* width: 45rem; */
+}
+
+.footer{
+    background-color: navy;
+    color: white;
+    text-align: center;
+    padding: 15px;
 }
