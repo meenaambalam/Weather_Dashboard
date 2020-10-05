@@ -21,7 +21,8 @@ $(document).ready(function(){
         
         for (var i = 0; i < cityArray.length; i++) {
             console.log("cityArray Length: " + cityArray.length);
-            ctyButton = $("<button>");
+            ctyButton = $("<input type='button'>");
+            //ctyButton = $("<button>");
             ctyButton.addClass("cityBtns");
             ctyButton.text(cityArray[i]);
             ctyButton.attr("value",cityArray[i]);
@@ -137,8 +138,27 @@ $(document).ready(function(){
         }
     })
 
-    $(".ctyBtns").on("click",function(){
+    $(document).on("click",'.cityBtns', function(event){
+        alert("cityBtn clicked");
+        alert($(event.target).val());
 
+        //event.stopPropagation();
+        //event.preventDefault();    
+
+        cityName = $(event.target).val();
+
+        $(".citySrch").val(cityName);
+        ajax_citySrch(cityName);
     })
+
+    /*
+    $(".cityBtns").on("click",function(){
+        alert("cityBtn clicked");
+        cityName = $(this).value;
+
+        console("clicked text: " + cityName);
+        $(".citySrch").val(cityName);
+        ajax_citySrch(cityName);
+    })*/
 
 })
