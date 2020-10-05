@@ -1,19 +1,53 @@
 $(document).ready(function(){
 
-    //get current date from Moment.js
-    var momentDateString = moment().toString();
-    var momentDate = moment().toDate();
-    var unix_timestamp = 1601848935;
-    var date = new Date(1601848935 * 1000);
-    var hours = date.getHours();
-    var minutes = "0" + date.getMinutes();
-    var seconds = "0" + date.getSeconds();
-    var cityArray = [""];
+     //get current date from Moment.js
+     var momentDateString = moment().toString();
+     var momentDate = moment().toDate();
+     var unix_timestamp = 1601848935;
+     var date = new Date(1601848935 * 1000);
+     var hours = date.getHours();
+     var minutes = "0" + date.getMinutes();
+     var seconds = "0" + date.getSeconds();
+     var cityArray = [];
+ 
+     console.log("date: " + date + " hours: " + hours + " minutes: " + minutes + " seconds: " + seconds);
+     //console.log(momentDateString);
+     //console.log(momentDate);
+ 
 
-    console.log("date: " + date + " hours: " + hours + " minutes: " + minutes + " seconds: " + seconds);
-    //console.log(momentDateString);
-    //console.log(momentDate);
+    function addCityButton(){
+        var ctyButton;
+        $(".cityBtns").remove(); //delete all the button elements
+        
+        for (var i = 0; i < cityArray.length; i++) {
+            console.log("cityArray Length: " + cityArray.length);
+            ctyButton = $("<button>");
+            ctyButton.addClass("cityBtns");
+            ctyButton.text(cityArray[i]);
+            ctyButton.attr("value",cityArray[i]);
+            $(".srchdCityLst").prepend(ctyButton);      
+        }
+        
+    }
 
+    // Function definition to add new City Button when user selects a city to lookup the weather
+    function checkCityArray(cityName){
+
+        cityArray.push(cityName);
+
+        // var indexCityArray = cityArray.indexOf(cityName);
+        // console.log(" 1: " + "cityArray: " + cityArray + " index: " + indexCityArray);
+        // //If the city searched is already in the button array list, remove it
+        // if (indexCityArray >=0 ) {
+        //     cityArray.splice(indexCityArray,1);
+        //     console.log(" 2: " + "cityArray: " + cityArray + " index: " + indexCityArray);
+        // }
+        // cityArray.push(cityName); //push search city to Array as the last item
+        console.log(" 3: " + "cityArray: " + cityArray);
+        addCityButton();
+    }
+
+   
 
     /*Everytime a city is searched, create the button and prepend to the button list
       Also pull the weather informaiton of the current date and 5 days forecast and display.
@@ -88,31 +122,7 @@ $(document).ready(function(){
 
     }
     
-    function addCityButton(cityName){
-        var ctyButton;
-
-        ctyButton = $("<button>");
-        ctyButton.addClass("cityBtns");
-        ctyButton.text(cityName);
-        $(".srchdCityLst").prepend(ctyButton);            
-        
-    }
-
-    // Function definition to add new City Button when user selects a city to lookup the weather
-    function checkCityArray(cityName){
-
-        var indexCityArray = cityArray.indexOf(cityName);
-        console.log(" 1: " + "cityArray: " + cityArray + " index: " + indexCityArray);
-        //If the city searched is already in the button array list, remove it
-        if (indexCityArray >=0 ) {
-            cityArray.splice(indexCityArray,1);
-            console.log(" 2: " + "cityArray: " + cityArray + " index: " + indexCityArray);
-        }
-        cityArray.push(cityName); //push search city to Array as the last item
-        console.log(" 3: " + "cityArray: " + cityArray + " index: " + indexCityArray);
-        addCityButton(cityName);
-
-    }
+    
 
     // Functionality to capture the Search Button Onclick event. 
     //The behavior when onclick is to call weather API and create dynamic city buttons and display the 5 days of forecast.
@@ -125,6 +135,10 @@ $(document).ready(function(){
         else {
             ajax_citySrch(cityName);
         }
+    })
+
+    $(".ctyBtns").on("click",function(){
+
     })
 
 })
