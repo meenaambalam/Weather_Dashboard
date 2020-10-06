@@ -15,10 +15,12 @@ The weather information is sourced by third-party API  [OpenWeather API](https:/
 
 ## Screenshots/Images to demonstrate the application functionality:
 
-![weather dashboard page load screenshot](./Assets/Weather_Dashboard_Screenshot_1.png)
-![City Search and Forecast screenshot](./Assets/Weather_Dashboard_Screenshot_2.png)
-![City selection from last searched city and its forecast screenshot](./Assets/Weather_Dashboard_Screenshot_3.png)
-![Persist the search for future forecast lookup screenshot](./Assets/Weather_Dashboard_Screenshot_4.png)
+![weather dashboard page load screenshot also showing request to add APIKey](./Assets/Weather_Dashboard_Screenshot_1.png)
+![Screenshot with the APIKey entry in the Footer area of the page](./Assets/Weather_Dashboard_Screenshot_2.png)
+![Screenshot showing the City search which dynamically adds the city button to the search history](./Assets/Weather_Dashboard_Screenshot_3.png)
+![Screenshot showing the all the cities added to the search history dynamically and showint the weather info](./Assets/Weather_Dashboard_Screenshot_4.png)
+![Screenshot showing how choosing the city from search history populates different section of the pages with relevant info](./Assets/Weather_Dashboard_Screenshot_5.png)
+![Screenshot showing how the APIKey and Weather City Search History is Persisted locally](./Assets/Weather_Dashboard_Screenshot_6.png)
 
 ## How to Use
 ```
@@ -38,6 +40,15 @@ The weather information is sourced by third-party API  [OpenWeather API](https:/
 2) Font Awesome
 3) OpenWeather API
 4) Local Storage 
+```
+
+## Credits
+```
+1) Bootstrap CDN
+2) Font Awesome
+3) OpenWeather API
+4) Google FU
+5) StackOverflow
 ```
 
 ## URL
