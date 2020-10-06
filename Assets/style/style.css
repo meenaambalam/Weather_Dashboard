@@ -65,6 +65,21 @@ span{
     width: 100%;
 }
 
+.uvIndxLow {
+    background-color: green;
+}
+.uvIndxMed {
+    background-color: orange;
+}
+.uvIndxHigh {
+    background-color: orangered;
+}
+.uvIndxVHigh {
+    cobackground-colorlor: red;
+}
+.uvIndxXtrm {
+    background-color: purple;
+}
 
 .footer{
     background-color: navy;
