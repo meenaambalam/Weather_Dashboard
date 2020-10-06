@@ -1,11 +1,24 @@
 $(document).ready(function(){
 
     var cityArray = [];
-    API_Key = "6b4ab0fdec08806ec39ecd7e60892ebc";
-
+    var API_Key;
+    var APIKeyFlag = false;
+    
     // Function definition to run at the time of Application/Page
-    // If there were any prioir city searches, they will be pulled from local storage
+    
     function run_onload(){
+
+        //Get APIKey from local storage at the time of the load
+        //If it is not available, alert user to enter and save an APIKey
+        if (localStorage.getItem("Weather_APIKey") !== null) {
+            API_Key = localStorage.getItem("Weather_APIKey");
+            APIKeyFlag = true;
+        } else{
+            alert("Please enter and save your OpenWeather APIKey first time you use this Application");
+        }
+        
+        // Pull searched history from local history if any
+
         if (localStorage.getItem("Weather_cityArray") !== null) {
             cityArray = JSON.parse(localStorage.getItem("Weather_cityArray"));
             for ( var i = 0; i < cityArray.length ; i++) {
@@ -15,6 +28,7 @@ $(document).ready(function(){
             $(".citySrch").val(cityArray[cityArray.length-1]);
             ajax_citySrch(lastCitySrched);
         }
+
     }
  
     // Invoke the page load function - Load the prioir searched city forecast
@@ -157,11 +171,13 @@ $(document).ready(function(){
         }
         else {
             var newSearch = true;
-            ajax_citySrch(cityName, newSearch);
-            // if (cityFoundFlag) {
-            //     checkCityArray(cityName);
-            //     addCityButton(cityName);
-            // }
+            if (APIKeyFlag){
+                ajax_citySrch(cityName, newSearch);
+            }
+            else{
+                alert("Please enter and save OpenWeather API Key the first time you use this application");
+            }
+            //ajax_citySrch(cityName, newSearch);
         }
     })
 
@@ -174,6 +190,19 @@ $(document).ready(function(){
 
         $(".citySrch").val(cityName);
         ajax_citySrch(cityName, newSearch);
+    })
+
+    $(".saveAPIBtn").on("click", function(){
+
+        if ($(".APIKey").val() === ""){
+            alert ("API Key is empty");
+        } else {
+            API_Key = $(".APIKey").val();
+            localStorage.setItem("Weather_APIKey", API_Key);
+            APIKeyFlag = true;
+            alert ("API Key is saved locally");
+            $(".APIKey").val("");
+        }
     })
 
 
