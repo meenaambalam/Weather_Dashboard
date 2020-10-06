@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Weather Dashboard</title>
+    <!--Bootstrap used for the main layout-->
+    <!--FontAwesome used to get the Search Font for the Search button -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+    <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />-->
     <link rel="stylesheet" href="./Assets/style/style.css" />
 </head>
 
 <body>
+    <!--Bootstrap container-->
     <div class="container">
         <div class="row">
             <div class="col-lg-12 header">
@@ -21,6 +24,7 @@
             </div>
         </div>
         <div class="row">
+            <!--City Search section-->
             <div class="col-lg-4 search dynamicSrchBtns">
                 <div class="greybox">
                     <div class="row">
@@ -40,21 +44,19 @@
                         </div>
                     </div>
                     <hr>
+                    <!--Searched Cities get added as button to show as history and for user for future needs as a shortcut way to lookup weather forecast-->
                     <div class="row">
                         <div class="col-lg-12 srchdCityLst">
-                            <!--Dynamically build the city buttons-->
-                            <!--<button class="cityBtns">Atlanta</button>
-                            <button class="cityBtns">Minneapolis</button>
-                            <button class="cityBtns">Eagan</button>
-                            <button class="cityBtns">EdenPrairie</button>-->
+                            <!--Dynamically build the city history buttons-->
                         </div>
                     </div>
                 </div>
             </div>
-
+            <!--Current and Future weather forecast display Area-->
             <div class="col-lg-8 dispWeather">
                 <div class="row ">
                     <div class="col-lg-12 ">
+                        <!--Current day Weather forecast -->
                         <div class="card day-0 todayForecast">
                             <div class="row">
                                 <div class="col-lg-4">
@@ -85,6 +87,7 @@
                         </div>
                     </div>
                 </div>
+                <!--5 day weather forecast-->
                 <div class="row forecast-text">
                     <div class="col-lg-12">
                         <h5>5-Day Forecast:</h5>
@@ -153,12 +156,12 @@
                 </div>
             </div>
         </div>
+        <!--footer-->
         <div class="row footer">
             <div class="col-lg-12">
                 <p>Wherever you go, no matter what the weather, always bring your own sunshine!!!</p>
             </div>
         </div>
-        <!--Dynamically build the weather dashboard-->
     </div>
 
     <!-- Links to various Libraries -->

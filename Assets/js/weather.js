@@ -1,8 +1,27 @@
 $(document).ready(function(){
 
     var cityArray = [];
+    API_Key = "6b4ab0fdec08806ec39ecd7e60892ebc";
+
+    // Function definition to run at the time of Application/Page
+    // If there were any prioir city searches, they will be pulled from local storage
+    function run_onload(){
+        if (localStorage.getItem("Weather_cityArray") !== null) {
+            cityArray = JSON.parse(localStorage.getItem("Weather_cityArray"));
+            for ( var i = 0; i < cityArray.length ; i++) {
+                    addCityButton(cityArray[i]);
+            }
+            var lastCitySrched = cityArray[cityArray.length-1];
+            $(".citySrch").val(cityArray[cityArray.length-1]);
+            ajax_citySrch(lastCitySrched);
+        }
+    }
+ 
+    // Invoke the page load function - Load the prioir searched city forecast
+    run_onload();
+
   
-    //Function to dynamically delete all buttons and add new ones based on values in array
+    //Function to dynamically add the Citities as they get searched. The full set of buttons are removed and rebuilt everytime a new city is searched
     function addCityButton(cityName){
         var ctyButton;
         $(".cityBtns").remove(); //delete all the button elements
@@ -15,23 +34,18 @@ $(document).ready(function(){
             ctyButton.attr("value",cityArray[i]);
             $(".srchdCityLst").prepend(ctyButton);    
         }
-     
+         
     } 
 
-    // Function definition to add new City Button when user selects a city to lookup the weather
+    // Function definition to add new City to the Array when a new search is made. The searched city is added to the local storage as well
     function checkCityArray(cityName){
         cityArray.push(cityName);
-        console.log(" 3: " + "cityArray: " + cityArray);
-        addCityButton(cityName);
+        localStorage.setItem("Weather_cityArray", JSON.stringify(cityArray));
     }
 
    
-    //Ajax function call to get 5 day forecast weather */
+    //Get 5 day weather forecast for the searched city
     function ajax_fiveDayForecast(cityName){
-        /* 5 day forecast weather */
-        //API_Key = "6b4ab0fdec08806ec39ecd7e60892ebc";
-        API_Key = "322def8db829f38bd0bfe5fffb4ad1e9";
-
         var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + API_Key + "&units=Imperial";
         
         $.ajax({
@@ -41,8 +55,8 @@ $(document).ready(function(){
                 var dayCounter = 1;
                 var forecastDispDt;
                 var dateDisp;
-
-                for (let i = 0; i < response.list.length; i++) {     //response counter - note: the resposne has forecast for every 3 hours. We only want one per day.
+                //i - response counter - note: the response has forecast for every 3 hours. We only want one per day.
+                for (let i = 0; i < response.list.length; i++) { 
           
                     forecastDateTime = (response.list[i].dt_txt).split(" ");
                     forecastDate = forecastDateTime[0];
@@ -58,17 +72,15 @@ $(document).ready(function(){
                         $("#humid" + dayCounter).text("Humidity: " + response.list[i].main.humidity + "%");
                         dayCounter++;
                     }
-                    if (dayCounter > 6) {
+                    if (dayCounter >= 6) {
                         break;
                     }
                 }
         })
     }    
 
-    //Get UVIndex from OpenWeather API
+    //Get UVIndex  for the specific lat and lon - from OpenWeather API
     function UVIndexCalc(lat, lon){
-        API_Key = "79e0cca66be57e320215eb8503d62db2";
-
         queryURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + API_Key;
                 
         $.ajax({
@@ -82,47 +94,36 @@ $(document).ready(function(){
 
             if (uvIndx > 10) {
                 $("#uvIndxDisp").addClass("uvIndx10");
-                alert(">10) unindx: " + uvIndx);
             } else if (uvIndx > 7){
                 $("#uvIndxDisp").addClass("uvIndx7");
-                alert(">7 unindx: " + uvIndx);
             } else if (uvIndx > 5){
                 $("#uvIndxDisp").addClass("uvIndx5");
-                alert(">5 unindx: " + uvIndx);
             } else if (uvIndx > 2){
                 $("#uvIndxDisp").addClass("uvIndx2");
-                alert(">2 unindx: " + uvIndx);
             } else {
                 $("#uvIndxDisp").addClass("uvIndxLess2");
-                alert("<2) unindx: " + uvIndx);
             }
             $("#uvIndxDisp").attr("value", uvIndx);
 
         })
     }
 
-    //AJAX call to get the Current Weather information from OpenWeather API for a particular City
+    //Get current weather information from OpenWeather Public API for the searched City
     //Unit Imperial gets the temperature in Fareheit unit
-    function ajax_citySrch(cityName){
-        //API_Key = "6b4ab0fdec08806ec39ecd7e60892ebc";
-        API_Key = "79e0cca66be57e320215eb8503d62db2";
+    //Only rebuild the searched city buttons when the city is Searched. 
+    //When the city is selected from previously searched list, rebuilding of the srched city buttons are not built
+
+    function ajax_citySrch(cityName, newSearch){
+        var cityFoundFlag = false;
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +cityName + "&appid=" + API_Key + "&units=Imperial";
-        //var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + API_Key + "&units=Imperial";
-        //https://api.openweathermap.org/data/2.5/weather?q=eagan&appid=6b4ab0fdec08806ec39ecd7e60892ebc&units=Imperial
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function(response){
-            var results = response;
-
-            /* Current day Weather */
             var forecastDateTime = response.dt;
             var forecastDate = new Date(forecastDateTime * 1000).toLocaleDateString();
-            alert("forecastDate: " + forecastDate);
-
-            //var forecastDate = moment(forecastDateTime).format('MM/DD/YYYY');
             var weatherIcon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
-            console.log("forecast date: " + forecastDate);
+
             $("#city0").text(response.name);
             $("#date0").text("(" + forecastDate + ")");
             $("#icon0").attr("src", weatherIcon);
@@ -134,17 +135,19 @@ $(document).ready(function(){
             var lon = response.coord.lon;
             UVIndexCalc(lat, lon);
 
-
             /* 5 day forecast weather */
-            ajax_fiveDayForecast(cityName);
-           
-            checkCityArray(cityName);
+            ajax_fiveDayForecast(cityName); 
+            cityFoundFlag = true; 
+            if (cityFoundFlag &&  newSearch){   //When the city response is returned by API and when it is a search done through search option
+                checkCityArray(cityName);       //rebuild the array
+                addCityButton(cityName);        //rebuild the searched city buttons
+            } 
+
         })
     }
-    
-    
+  
 
-    // Functionality to capture the Search Button Onclick event. 
+    //Functionality to capture the Search Button Onclick event. 
     //The behavior when onclick is to call weather API and create dynamic city buttons and display the 5 days of forecast.
     $(".citySrchBtn").on("click", function(){
         var cityName = $(".citySrch").val();
@@ -153,31 +156,25 @@ $(document).ready(function(){
             alert("Please enter a city name");
         }
         else {
-            ajax_citySrch(cityName);
+            var newSearch = true;
+            ajax_citySrch(cityName, newSearch);
+            // if (cityFoundFlag) {
+            //     checkCityArray(cityName);
+            //     addCityButton(cityName);
+            // }
         }
     })
 
+    // When the previously searched city "button" is clicked, the daily and 5 day forecast of that city should be captured from webAPI and displayed
     $(document).on("click",'.cityBtns', function(event){
-        alert("cityBtn clicked");
-        alert($(event.target).val());
-
         //event.stopPropagation();
         //event.preventDefault();    
-
+        newSearch = false;
         cityName = $(event.target).val();
 
         $(".citySrch").val(cityName);
-        ajax_citySrch(cityName);
+        ajax_citySrch(cityName, newSearch);
     })
 
-    /*
-    $(".cityBtns").on("click",function(){
-        alert("cityBtn clicked");
-        cityName = $(this).value;
-
-        console("clicked text: " + cityName);
-        $(".citySrch").val(cityName);
-        ajax_citySrch(cityName);
-    })*/
 
 })
