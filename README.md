@@ -2,6 +2,11 @@
 
 Weather Dashboard application provides users with current and 5-day forecast of weather. 
 
+## Important Note:
+```
+This Application requires an APIKey from OpenWeathermap.org. 
+```
+
 ## Description
 ```
 Weather Dashboard features smart search option to lookup current and 5-day weather forecast. 
