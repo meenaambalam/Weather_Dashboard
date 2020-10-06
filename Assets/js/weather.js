@@ -1,89 +1,61 @@
 $(document).ready(function(){
 
-     //get current date from Moment.js
-     var momentDateString = moment().toString();
-     var momentDate = moment().toDate();
-     var unix_timestamp = 1601848935;
-     var date = new Date(1601848935 * 1000);
-     var hours = date.getHours();
-     var minutes = "0" + date.getMinutes();
-     var seconds = "0" + date.getSeconds();
-     var cityArray = [];
- 
-     console.log("date: " + date + " hours: " + hours + " minutes: " + minutes + " seconds: " + seconds);
-     //console.log(momentDateString);
-     //console.log(momentDate);
- 
-
-    function addCityButton(){
+    var cityArray = [];
+  
+    //Function to dynamically delete all buttons and add new ones based on values in array
+    function addCityButton(cityName){
         var ctyButton;
         $(".cityBtns").remove(); //delete all the button elements
         
         for (var i = 0; i < cityArray.length; i++) {
             console.log("cityArray Length: " + cityArray.length);
             ctyButton = $("<input type='button'>");
-            //ctyButton = $("<button>");
             ctyButton.addClass("cityBtns");
             ctyButton.text(cityArray[i]);
             ctyButton.attr("value",cityArray[i]);
-            $(".srchdCityLst").prepend(ctyButton);      
+            $(".srchdCityLst").prepend(ctyButton);    
         }
-    }
+     
+    } 
 
     // Function definition to add new City Button when user selects a city to lookup the weather
     function checkCityArray(cityName){
-
         cityArray.push(cityName);
-
-        // var indexCityArray = cityArray.indexOf(cityName);
-        // console.log(" 1: " + "cityArray: " + cityArray + " index: " + indexCityArray);
-        // //If the city searched is already in the button array list, remove it
-        // if (indexCityArray >=0 ) {
-        //     cityArray.splice(indexCityArray,1);
-        //     console.log(" 2: " + "cityArray: " + cityArray + " index: " + indexCityArray);
-        // }
-        // cityArray.push(cityName); //push search city to Array as the last item
         console.log(" 3: " + "cityArray: " + cityArray);
-        addCityButton();
+        addCityButton(cityName);
     }
 
    
-
-    /*Everytime a city is searched, create the button and prepend to the button list
-      Also pull the weather informaiton of the current date and 5 days forecast and display.
-      When the user clicks on any of the older city buttons, it also should pull the information fro.
-      Weather API and display in the appropriate widgets.
-    */
-
     //Ajax function call to get 5 day forecast weather */
     function ajax_fiveDayForecast(cityName){
         /* 5 day forecast weather */
         //API_Key = "6b4ab0fdec08806ec39ecd7e60892ebc";
         API_Key = "322def8db829f38bd0bfe5fffb4ad1e9";
-        //var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +cityName + "&appid=" + API_Key + "&units=Imperial";
+
         var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + API_Key + "&units=Imperial";
         
-        //   https://api.openweathermap.org/data/2.5/forecast?q=eagan&appid=322def8db829f38bd0bfe5fffb4ad1e9&units=Imperial
-
         $.ajax({
         url: queryURL,
         method: "GET"
         }).then(function(response){
-                var dayCounter = 0;
+                var dayCounter = 1;
+                var forecastDispDt;
+                var dateDisp;
+
                 for (let i = 0; i < response.list.length; i++) {     //response counter - note: the resposne has forecast for every 3 hours. We only want one per day.
           
                     forecastDateTime = (response.list[i].dt_txt).split(" ");
                     forecastDate = forecastDateTime[0];
                     forecastTime = forecastDateTime[1];
-                    if (forecastTime == "00:00:00") {
-                    //console.log("i: " + i + " daycounter: " + dayCounter);
-
+                    if (forecastTime == "12:00:00") {
+                        forecastDispDt = response.list[i].dt;
+                        dateDisp = new Date(forecastDispDt * 1000).toLocaleDateString();
                         weatherIcon = "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png";
-                        $("#date" + dayCounter).text(forecastDate);
+                        $("#date" + dayCounter).text(dateDisp);
                         $("#icon" + dayCounter).attr("src", weatherIcon);
                         $("#icon" + dayCounter).attr("alt", response.list[i].weather[0].description);
-                        $("#temp" + dayCounter).text("Temp: " + response.list[i].main.temp);
-                        $("#humid" + dayCounter).text("Humidity: " + response.list[i].main.humidity);
+                        $("#temp" + dayCounter).text("Temp: " + response.list[i].main.temp + " F");
+                        $("#humid" + dayCounter).text("Humidity: " + response.list[i].main.humidity + "%");
                         dayCounter++;
                     }
                     if (dayCounter > 6) {
@@ -93,7 +65,7 @@ $(document).ready(function(){
         })
     }    
 
-    //Get UVIndex
+    //Get UVIndex from OpenWeather API
     function UVIndexCalc(lat, lon){
         API_Key = "79e0cca66be57e320215eb8503d62db2";
 
@@ -105,24 +77,31 @@ $(document).ready(function(){
         }).then(function(response){
             
             var uvIndx = response.value;
-            $("#uvindex0").text("UV Index: " + uvIndx);
+
+            $("#uvIndxDisp").removeClass();
 
             if (uvIndx > 10) {
-                $("#uvindxDisp").addClass("unIndxXtrm");
+                $("#uvIndxDisp").addClass("uvIndx10");
+                alert(">10) unindx: " + uvIndx);
             } else if (uvIndx > 7){
-                $("#uvindxDisp").addClass("unIndxVHigh");
+                $("#uvIndxDisp").addClass("uvIndx7");
+                alert(">7 unindx: " + uvIndx);
             } else if (uvIndx > 5){
-                $("#uvindxDisp").addClass("unIndxHigh");
+                $("#uvIndxDisp").addClass("uvIndx5");
+                alert(">5 unindx: " + uvIndx);
             } else if (uvIndx > 2){
-                $("#uviuvindxDispndx").addClass("unIndxMed");
+                $("#uvIndxDisp").addClass("uvIndx2");
+                alert(">2 unindx: " + uvIndx);
             } else {
-                $("#uvindxDisp").addClass("unIndxLow");
+                $("#uvIndxDisp").addClass("uvIndxLess2");
+                alert("<2) unindx: " + uvIndx);
             }
-            //$("#uvindxDisp").value(uvIndx);
+            $("#uvIndxDisp").attr("value", uvIndx);
+
         })
     }
 
-    // Function definition of the AJAX call to Weatehr API to get weather of a particular city
+    //AJAX call to get the Current Weather information from OpenWeather API for a particular City
     //Unit Imperial gets the temperature in Fareheit unit
     function ajax_citySrch(cityName){
         //API_Key = "6b4ab0fdec08806ec39ecd7e60892ebc";
@@ -137,21 +116,22 @@ $(document).ready(function(){
             var results = response;
 
             /* Current day Weather */
-            var forecastDateTime = (response.dt);
-            var forecastDate = forecastDateTime;
+            var forecastDateTime = response.dt;
+            var forecastDate = new Date(forecastDateTime * 1000).toLocaleDateString();
+            alert("forecastDate: " + forecastDate);
+
+            //var forecastDate = moment(forecastDateTime).format('MM/DD/YYYY');
             var weatherIcon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
             console.log("forecast date: " + forecastDate);
             $("#city0").text(response.name);
             $("#date0").text("(" + forecastDate + ")");
             $("#icon0").attr("src", weatherIcon);
             $("#icon0").attr("alt", response.weather[0].description);
-            $("#temp0").text("Temperature: " + response.main.temp);
-            $("#humid0").text("Humidity: " + response.main.humidity);
-            $("#wind0").text("Wind Speed: " + response.wind.speed);
+            $("#temp0").text("Temperature: " + response.main.temp + " F");
+            $("#humid0").text("Humidity: " + response.main.humidity + "%");
+            $("#wind0").text("Wind Speed: " + response.wind.speed + " MPH");
             var lat = response.coord.lat;
             var lon = response.coord.lon;
-            alert("lat: " + response.coord.lat + " lon: " + response.coord.lon);
-
             UVIndexCalc(lat, lon);
 
 

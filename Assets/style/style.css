@@ -65,20 +65,25 @@ span{
     width: 100%;
 }
 
-.uvIndxLow {
+.uvIndxLess2 {
     background-color: green;
+    color: white;
 }
-.uvIndxMed {
+.uvIndx2 {
     background-color: orange;
+    color: white;
 }
-.uvIndxHigh {
+.uvIndx5 {
     background-color: orangered;
+    color: white;
 }
-.uvIndxVHigh {
-    cobackground-colorlor: red;
+.uvIndx7 {
+    background-color: red;
+    color: white;
 }
-.uvIndxXtrm {
+.uvIndx10 {
     background-color: purple;
+    color: white;
 }
 
 .footer{
