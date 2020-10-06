@@ -20,6 +20,11 @@
     float:left;
 }
 
+/*Search History label aligning properly*/
+.srchHistLabel {
+    padding-left: 20px;
+}
+
 .citySrchBtn{
     background-color: blue;
 }
