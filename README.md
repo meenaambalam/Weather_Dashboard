@@ -2,12 +2,13 @@
 
 Weather Dashboard application provides users with current and 5-day forecast of weather. 
 
-## Important Note:
+## Important Note
 ```
 This Application requires an APIKey from OpenWeathermap.org. 
 ```
 
 ## Description
+
 ```
 Weather Dashboard features smart search option to lookup current and 5-day weather forecast. 
 The dashboard provides valuable information like, temperature, humidity, wind-speed, UVIndex along with icon representation of the weather. It also presents the UVIndex with approproate color to show if the consition is favorable, moderate or severe.
@@ -21,10 +22,15 @@ The weather information is sourced by third-party API  [OpenWeather API](https:/
 ## Screenshots/Images to demonstrate the application functionality:
 
 ![weather dashboard page load screenshot also showing request to add APIKey](./Assets/Weather_Dashboard_Screenshot_1.png)
+
 ![Screenshot with the APIKey entry in the Footer area of the page](./Assets/Weather_Dashboard_Screenshot_2.png)
+
 ![Screenshot showing the City search which dynamically adds the city button to the search history](./Assets/Weather_Dashboard_Screenshot_3.png)
+
 ![Screenshot showing the all the cities added to the search history dynamically and showint the weather info](./Assets/Weather_Dashboard_Screenshot_4.png)
+
 ![Screenshot showing how choosing the city from search history populates different section of the pages with relevant info](./Assets/Weather_Dashboard_Screenshot_5.png)
+
 ![Screenshot showing how the APIKey and Weather City Search History is Persisted locally](./Assets/Weather_Dashboard_Screenshot_6.png)
 
 ## How to Use
