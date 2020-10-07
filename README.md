@@ -21,15 +21,27 @@ The weather information is sourced by third-party API  [OpenWeather API](https:/
 
 ## Screenshots/Images to demonstrate the application functionality:
 
+1) weather dashboard page load screenshot also showing request to add:
+
 ![weather dashboard page load screenshot also showing request to add APIKey](./Assets/Weather_Dashboard_Screenshot_1.png)
+
+2) Screenshot with the APIKey entry in the Footer area of the page:
 
 ![Screenshot with the APIKey entry in the Footer area of the page](./Assets/Weather_Dashboard_Screenshot_2.png)
 
+3) Screenshot showing the City search which dynamically adds the city button to the search history:
+
 ![Screenshot showing the City search which dynamically adds the city button to the search history](./Assets/Weather_Dashboard_Screenshot_3.png)
 
-![Screenshot showing the all the cities added to the search history dynamically and showint the weather info](./Assets/Weather_Dashboard_Screenshot_4.png)
+4) Screenshot showing the all the cities added to the search history dynamically and show in the weather info:
+
+![Screenshot showing the all the cities added to the search history dynamically and show in the weather info](./Assets/Weather_Dashboard_Screenshot_4.png)
+
+5) Screenshot showing how choosing the city from search history populates different section of the pages with relevant info:
 
 ![Screenshot showing how choosing the city from search history populates different section of the pages with relevant info](./Assets/Weather_Dashboard_Screenshot_5.png)
+
+6) Screenshot showing how the APIKey and Weather City Search History is Persisted locally:
 
 ![Screenshot showing how the APIKey and Weather City Search History is Persisted locally](./Assets/Weather_Dashboard_Screenshot_6.png)
 
