@@ -5,6 +5,7 @@ Weather Dashboard application provides users with current and 5-day forecast of 
 ## Important Note
 ```
 This Application requires an APIKey from OpenWeathermap.org. 
+If the cityname is incorrect or not found in the API, the control will stay in the Search area and will not populate any data for that input.
 ```
 
 ## Description
