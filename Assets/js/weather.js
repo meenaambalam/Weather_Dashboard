@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     var cityArray = [];
-    var API_Key;
+    var API_Key = "6b4ab0fdec08806ec39ecd7e60892ebc";
     var APIKeyFlag = false;
     
     // Function definition to run at the time of Application/Page
@@ -10,12 +10,13 @@ $(document).ready(function(){
 
         //Get APIKey from local storage at the time of the load
         //If it is not available, alert user to enter and save an APIKey
-        if (localStorage.getItem("Weather_APIKey") !== null) {
+        //commenting this if-else section, so it doesn't prevent potential employers from working with this App - saved the API Key in the program itself"
+        /*if (localStorage.getItem("Weather_APIKey") !== null) {
             API_Key = localStorage.getItem("Weather_APIKey");
             APIKeyFlag = true;
         } else{
             alert("Please enter and save your OpenWeather APIKey first time you use this Application");
-        }
+        }*/
         
         // Pull searched history from local history if any
 
