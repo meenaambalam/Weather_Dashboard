@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
     var cityArray = [];
-    var API_Key = "6b4ab0fdec08806ec39ecd7e60892ebc";
-    var APIKeyFlag = false;
+    var API_Key = "6b4ab0fdec08806ec39ecd7e60892ebc"; //added key directly instead of using the local storage //
+    var APIKeyFlag = true; //changed this from false to true, due to hardcoding the APIKEy flag//
     
     // Function definition to run at the time of Application/Page
     
